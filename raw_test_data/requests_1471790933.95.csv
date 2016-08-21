@@ -1,0 +1,3 @@
+"Method","Name","# requests","# failures","Median response time","Average response time","Min response time","Max response time","Average Content Size","Requests/s"
+"GET","/say_hello",4214721,0,19,20,1,408,20,37495.41
+"None","Total",4214721,0,19,20,1,408,20,37495.41
