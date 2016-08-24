@@ -1,0 +1,38 @@
+server {
+	listen 81;
+
+	root /usr/share/nginx/html;
+	index index.html index.htm;
+
+	# Make site accessible from http://localhost/
+	server_name localhost;
+
+    auth_basic "Restricted";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+
+	location /say_hello {
+        echo "Hello from nginx";
+	}
+
+	location / {
+        echo "index.html content";
+	}
+	location /news {
+        echo "news list with paging";
+	}
+	location ~ ^/news/(?<news_id>[0-9]+)$ {
+        echo "whole page with news by id $news_id";
+	}
+	location ~ ^/news/(?<news_id>[0-9]+)/comments {
+        if ($request_method = POST) {
+            return 201 "add user comment about news $news_id";
+        }
+        if ($request_method = PUT) {
+            return 200 "edit user comments aput news $news_id";
+        }
+        if ($request_method = DELETE) {
+            return 204;
+        }
+        echo "list of comments for news $news_id";
+	}
+}
