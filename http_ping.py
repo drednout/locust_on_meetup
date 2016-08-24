@@ -5,7 +5,7 @@ class HttpPingTasks(TaskSet):
     def ping(self):
         self.client.get("/")
 
-class SayHelloLocust(HttpLocust):
+class HttpPingLocust(HttpLocust):
     task_set = HttpPingTasks
     min_wait = 100
     max_wait = 500
