@@ -25,6 +25,7 @@ server {
 	}
 	location ~ ^/news/(?<news_id>[0-9]+)/comments {
         if ($request_method = POST) {
+            limit_rate 50;
             return 201 "add user comment about news $news_id";
         }
         if ($request_method = PUT) {
